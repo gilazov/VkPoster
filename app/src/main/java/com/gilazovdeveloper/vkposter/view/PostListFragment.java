@@ -34,6 +34,7 @@ public class PostListFragment extends Fragment implements PostListFragmentView, 
     InfiniteManager infiniteManager = new InfiniteManager();
     View view;
     TextView emptyView;
+
     public PostListFragment() {
     }
 
@@ -113,6 +114,7 @@ public class PostListFragment extends Fragment implements PostListFragmentView, 
     public void setItems(List<Post> result , int scrollPosition) {
         recyclerView.setAdapter(new PostRecyclerViewAdapter(getContext(), result, this));
         recyclerView.getAdapter().notifyDataSetChanged();
+        if (scrollPosition < recyclerView.getAdapter().getItemCount())
         recyclerView.scrollToPosition(scrollPosition);
     }
 

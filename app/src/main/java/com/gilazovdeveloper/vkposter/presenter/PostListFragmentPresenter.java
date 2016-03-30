@@ -1,5 +1,6 @@
 package com.gilazovdeveloper.vkposter.presenter;
 
+import com.gilazovdeveloper.vkposter.model.PostRepository;
 import com.gilazovdeveloper.vkposter.model.vo.Post;
 import com.gilazovdeveloper.vkposter.utils.PostCache;
 import com.gilazovdeveloper.vkposter.view.PostListFragmentView;
@@ -10,6 +11,8 @@ import com.gilazovdeveloper.vkposter.view.PostListFragmentView;
 public interface PostListFragmentPresenter {
 
     void attachView(PostListFragmentView view);
+
+    void attachRepository(PostRepository repository);
 
     void loadData();//загрузка того что есть в кеше если он не пуст
 

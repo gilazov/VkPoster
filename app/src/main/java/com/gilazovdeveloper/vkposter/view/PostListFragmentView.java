@@ -20,4 +20,5 @@ public interface PostListFragmentView {
      void setInfiniteEnable(boolean b);
      void showEmptyView(boolean b);
      void showErrorMessage(String errorMessage);
+
 }

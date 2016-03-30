@@ -43,6 +43,12 @@ public class PostListFragmentPresenterImpl implements PostListFragmentPresenter,
             this.view = view;
     }
 
+
+    @Override
+    public void attachRepository(PostRepository repository) {
+        postRepository = repository;
+    }
+
     @Override
     public void loadData() {
         if (view!=null) {
@@ -67,7 +73,6 @@ public class PostListFragmentPresenterImpl implements PostListFragmentPresenter,
         postRepository.getMoreData(viewPosts.size(), this);
     }
 
-
     @Override
     public void refreshData() {
         if (view!=null) {
@@ -91,6 +96,7 @@ public class PostListFragmentPresenterImpl implements PostListFragmentPresenter,
 
     @Override
     public void onFinished(List<Post> items, int responseCode) {
+
         switch (responseCode) {
             case PostRepository.FULL_DATA_RESPONSE :
                 if (items.size()!=0) {
@@ -103,7 +109,6 @@ public class PostListFragmentPresenterImpl implements PostListFragmentPresenter,
                     view.showEmptyView(true);
                     view.setInfiniteEnable(false);
                 }
-                view.showProgress(false);
                 break;
             case PostRepository.MORE_DATA_RESPONSE:
                 int offset = viewPosts.size();
@@ -116,11 +121,15 @@ public class PostListFragmentPresenterImpl implements PostListFragmentPresenter,
                 view.setInfiniteEnable(false);
                 break;
         }
+
+        view.showProgress(false);
     }
 
     @Override
     public void onError(String errorMessage) {
-            view.showErrorMessage(errorMessage);
+        view.showProgress(false);
+        view.showInfiniteProgress(false);
+        view.showErrorMessage(errorMessage);
    }
 
 }

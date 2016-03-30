@@ -4,6 +4,7 @@ import android.content.Intent;
 
 import com.gilazovdeveloper.vkposter.utils.PostCache;
 import com.gilazovdeveloper.vkposter.utils.PostLruCacheImpl;
+import com.gilazovdeveloper.vkposter.view.LoginActivity;
 import com.vk.sdk.VKAccessToken;
 import com.vk.sdk.VKAccessTokenTracker;
 import com.vk.sdk.VKSdk;

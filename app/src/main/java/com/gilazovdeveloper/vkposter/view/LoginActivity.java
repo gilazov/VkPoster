@@ -1,4 +1,4 @@
-package com.gilazovdeveloper.vkposter;
+package com.gilazovdeveloper.vkposter.view;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -8,7 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.gilazovdeveloper.vkposter.view.MainActivity;
+import com.gilazovdeveloper.vkposter.R;
 import com.vk.sdk.VKAccessToken;
 import com.vk.sdk.VKCallback;
 import com.vk.sdk.VKScope;
