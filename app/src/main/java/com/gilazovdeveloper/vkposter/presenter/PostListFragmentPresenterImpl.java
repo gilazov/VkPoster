@@ -7,6 +7,7 @@ import com.gilazovdeveloper.vkposter.Application;
 import com.gilazovdeveloper.vkposter.callback.OnFinishedListener;
 import com.gilazovdeveloper.vkposter.model.PostRepository;
 import com.gilazovdeveloper.vkposter.model.vo.Post;
+import com.gilazovdeveloper.vkposter.utils.MyCache;
 import com.gilazovdeveloper.vkposter.utils.PostCache;
 import com.gilazovdeveloper.vkposter.utils.PostLruCacheImpl;
 import com.gilazovdeveloper.vkposter.view.MainActivity;
@@ -28,14 +29,10 @@ public class PostListFragmentPresenterImpl implements PostListFragmentPresenter,
     public PostListFragmentPresenterImpl(PostListFragmentView view) {
         this.view = view;
         postRepository = new PostRepository();
-        postRepository.setCache(new PostLruCacheImpl());
+        postRepository.setCache(MyCache.getCacheInstance());//setCustom Cache
         if (viewPosts==null) {
             viewPosts = new ArrayList<>();
         }
-    }
-
-    public PostCache getApplicationCache(){
-        return ((Application)view.getApplicationContext()).getCacheSingleton();
     }
 
     @Override

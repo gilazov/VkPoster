@@ -17,6 +17,7 @@ public class ImageLoader {
            Glide
                    .with(ctx)
                    .load(pictureSrc)
+                   .skipMemoryCache(true)
                    .into(view);
        }else if (hideIfEmpty){
            view.setVisibility(View.GONE);

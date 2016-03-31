@@ -13,7 +13,6 @@ import com.vk.sdk.VKSdk;
  * Created by ruslan on 13.03.16.
  */
 public class Application extends android.app.Application{
-    PostCache mCache = new PostLruCacheImpl();
 
     VKAccessTokenTracker vkAccessTokenTracker = new VKAccessTokenTracker() {
         @Override
@@ -34,10 +33,6 @@ public class Application extends android.app.Application{
         VKSdk.initialize(getApplicationContext());
         vkAccessTokenTracker.startTracking();
 
-    }
-
-    public PostCache getCacheSingleton(){
-        return mCache;
     }
 
 }
