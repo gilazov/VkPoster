@@ -1,9 +1,5 @@
 package com.gilazovdeveloper.vkposter.view;
 
-import android.app.Activity;
-import android.app.FragmentManager;
-import android.os.Build;
-
 import com.gilazovdeveloper.vkposter.BuildConfig;
 import com.gilazovdeveloper.vkposter.presenter.PostListFragmentPresenterImpl;
 
@@ -12,9 +8,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.robolectric.Robolectric;
 import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.annotation.Config;
+
+import java.lang.reflect.Field;
 
 import static org.mockito.Mockito.verify;
 import static org.robolectric.shadows.support.v4.SupportFragmentTestUtil.startFragment;
@@ -33,12 +30,14 @@ public class PostListFragmentTest {
     PostListFragment postListFragment;
 
     @Before
-    public void setUp(){
+    public void setUp() throws NoSuchFieldException, IllegalAccessException {
         MockitoAnnotations.initMocks(this);
-        MainActivity activity = Robolectric.setupActivity(MainActivity.class);
         postListFragment = PostListFragment.newInstance();
         startFragment(postListFragment);
-        presenter.attachView(postListFragment);
+
+        Field privateField = PostListFragment.class.getDeclaredField("presenter");
+        privateField.setAccessible(true);
+        privateField.set(postListFragment, presenter);
     }
 
     @Test
@@ -46,5 +45,4 @@ public class PostListFragmentTest {
         postListFragment.onDestroy();
         verify(presenter).onDestroy();
     }
-
 }
